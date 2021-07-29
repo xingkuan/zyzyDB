@@ -1,3 +1,12 @@
+create database notes;
+--postgres=# \l
+--                                     List of databases
+-- Name   |  Owner   | Encod |   Collate   |    Ctype    |   Access privileges   
+--------------------+--------+----------+-------------+------------------------
+-- body   | postgres | UTF8  | en_US.UTF-8 | en_US.UTF-8 | 
+-- notes  | postgres | UTF8  | en_US.UTF-8 | en_US.UTF-8 | 
+-- ..........  
+
 CREATE FUNCTION update_modified_column() RETURNS trigger
     LANGUAGE plpgsql
     AS $$
@@ -75,4 +84,18 @@ CONSTRAINT template_pkey PRIMARY KEY (name);
 
 CREATE TRIGGER node_updated AFTER UPDATE ON node 
 FOR EACH ROW EXECUTE PROCEDURE update_modified_column();
+
+
+
+--2020.10.12 probably the new version going forward
+create table infobot (
+id varchar(200), 
+title varchar(500), 
+source varchar(200),
+tags varchar(200),
+version int, 
+content text
+);
+
+
 
